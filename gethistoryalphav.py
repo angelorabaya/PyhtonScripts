@@ -44,6 +44,6 @@ if __name__ == '__main__':
     try:
         historical_data = fetch_historical_data(SYMBOL, API_KEY, TIME_FRAME, OUTPUT_SIZE)
         df = convert_to_dataframe(historical_data, TIME_FRAME)
-        save_to_csv(df, f'{SYMBOL}_{TIME_FRAME}.csv')
+        save_to_csv(df, f'{SYMBOL}.csv')
     except Exception as e:
         print(str(e))

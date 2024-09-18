@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 
 # Load the data
-data = pd.read_csv('d:/BTCUSDT.csv', parse_dates=['Date'])
+data = pd.read_csv('BNBUSDT.csv', parse_dates=['Date'])
 data['Date'] = pd.to_datetime(data['Date'])
 data.set_index('Date', inplace=True)
 
