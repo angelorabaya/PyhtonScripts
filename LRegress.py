@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
 # Load the dataset
-df = pd.read_csv('BNBUSDT.csv')
+df = pd.read_csv('BTCUSDT.csv')
 
 # Convert the 'Date' column to datetime format
 df['Date'] = pd.to_datetime(df['Date'])
