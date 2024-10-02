@@ -4,7 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 
 # Load data
-df = pd.read_csv("ETHUSDT.csv")
+df = pd.read_csv("GBPNZD.csv")
 
 # Preprocess data
 df['Date'] = pd.to_datetime(df['Date'])
