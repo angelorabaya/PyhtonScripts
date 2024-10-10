@@ -10,7 +10,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout, Input
 from sklearn.model_selection import train_test_split
 
 # Load CSV data
-data = pd.read_csv('GBPNZD.csv')
+data = pd.read_csv('AAPL.csv')
 
 # Preprocess data: take 'Close' price and normalize
 data['Date'] = pd.to_datetime(data['Date'])
@@ -60,4 +60,10 @@ predictions = scaler.inverse_transform(predictions)
 predicted_direction = np.sign(np.diff(predictions.flatten()))
 
 # Print the results
-print("Predicted Price Direction: " + str(predicted_direction))
+#print("Predicted Price Direction: " + str(predicted_direction))
+
+count_1s = np.sum(predicted_direction == 1)
+count_neg1s = np.sum(predicted_direction == -1)
+
+print("Count of 1s:", count_1s)
+print("Count of -1s:", count_neg1s)
