@@ -22,9 +22,9 @@ def get_currency_data(currency_pair, start_date, end_date):
 
 if __name__ == "__main__":
     # Define currency pair, start date and end date
-    currency_pair = 'BTC-USD'  # Euro to US Dollar
-    start_date = '2023-09-09'  # Start date
-    end_date = '2024-09-09'  # End date
+    currency_pair = 'AAPL'  # Euro to US Dollar
+    start_date = '2018-01-01'  # Start date
+    end_date = '2024-10-11'  # End date
 
     # Get the historical data
     historical_data = get_currency_data(currency_pair, start_date, end_date)

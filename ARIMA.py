@@ -3,7 +3,7 @@ from statsmodels.tsa.arima.model import ARIMA
 import matplotlib.pyplot as plt
 
 # Load data
-file_path = 'AAPL.csv'  # Replace with your CSV file path
+file_path = 'EURUSD.csv'  # Replace with your CSV file path
 data = pd.read_csv(file_path)
 
 # Parse dates and set index with frequency
