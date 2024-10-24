@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
 # Load the dataset
-df = pd.read_csv('BTCUSDT.csv')
+df = pd.read_csv('DJT.csv')
 
 # Convert the 'Date' column to datetime format
 df['Date'] = pd.to_datetime(df['Date'])
@@ -31,20 +31,36 @@ model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
 # Visualize the results
-plt.figure(figsize=(14, 7))
-plt.scatter(df.index, df['Close'], color='blue', label='Actual Prices', alpha=0.5)
-plt.scatter(X_test.index, predictions, color='red', label='Predicted Prices', alpha=0.5)
-plt.title('Bitcoin Price Prediction')
-plt.xlabel('Date')
-plt.ylabel('Price (USD)')
-plt.legend()
-plt.show()
+#plt.figure(figsize=(14, 7))
+#plt.scatter(df.index, df['Close'], color='blue', label='Actual Prices', alpha=0.5)
+#plt.scatter(X_test.index, predictions, color='red', label='Predicted Prices', alpha=0.5)
+#plt.title('Bitcoin Price Prediction')
+#plt.xlabel('Date')
+#plt.ylabel('Price (USD)')
+#plt.legend()
+#plt.show()
 
 # Predict future prices: Let's assume we're predicting for the next 30 days
-future_days = pd.DataFrame({'Days': np.arange(df['Days'].max() + 1, df['Days'].max() + 31)})
-future_predictions = model.predict(future_days)
+#future_days = pd.DataFrame({'Days': np.arange(df['Days'].max() + 1, df['Days'].max() + 31)})
+#future_predictions = model.predict(future_days)
 
 # Print future predictions
-future_dates = pd.date_range(start=df.index[-1] + pd.Timedelta(days=1), periods=30)
-future_price_df = pd.DataFrame({'Date': future_dates, 'Predicted Price': future_predictions})
-print(future_price_df)
+#future_dates = pd.date_range(start=df.index[-1] + pd.Timedelta(days=1), periods=30)
+#future_price_df = pd.DataFrame({'Date': future_dates, 'Predicted Price': future_predictions})
+#print(future_price_df)
+
+# Print the coefficient (slope) of the 'Days' variable
+if model.coef_ < 0:
+    print("Bearish")
+else:
+    print("Bullish")
+
+#print(model.coef_)
+
+# If you want to visualize:
+#plt.plot(X_test, predictions, label='Predicted')  # Plot the predicted line
+#plt.scatter(X_test, y_test, label='Actual', color='red')  # Show actual data
+#plt.xlabel('Days')
+#plt.ylabel('Close Price')
+#plt.legend()
+#plt.show()

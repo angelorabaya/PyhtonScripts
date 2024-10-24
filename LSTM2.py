@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import os
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -11,7 +10,7 @@ from keras.layers import LSTM, Dense, Dropout
 from keras.layers import Input
 
 # Load the data
-data = pd.read_csv('BTCUSDT.csv', parse_dates=['Date'], index_col='Date')
+data = pd.read_csv('DJT.csv', parse_dates=['Date'], index_col='Date')
 data = data[['Close']]  # Use closing prices for forecasting
 
 # Normalize the data
@@ -86,17 +85,4 @@ future_predictions = scaler.inverse_transform(np.array(future_predictions).resha
 # Create future dates for plotting
 future_dates = pd.date_range(start=data.index[-1], periods=future_steps + 1, freq='h')[1:]
 
-# Plotting
-plt.figure(figsize=(14, 5))
-
-# Plot actual prices
-plt.plot(data.index, data['Close'], color='blue', label='Actual Price')
-
-# Plot the predicted future prices
-plt.plot(future_dates, future_predictions, color='red', label='Predicted Future Price')
-
-plt.xlabel('Date')
-plt.ylabel('Price')
-plt.title('Price Prediction with Future Predictions')
-plt.legend()
-plt.show()
+print(future_predictions)

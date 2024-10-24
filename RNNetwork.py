@@ -10,7 +10,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout, Input
 from sklearn.model_selection import train_test_split
 
 # Load CSV data
-data = pd.read_csv('SOLUSDT.csv')
+data = pd.read_csv('DJT.csv')
 
 # Preprocess data: take 'Close' price and normalize
 data['Date'] = pd.to_datetime(data['Date'])

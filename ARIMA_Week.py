@@ -1,6 +1,5 @@
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
-import matplotlib.pyplot as plt
 
 # Load data
 file_path = 'DJT.csv'  # Replace with your CSV file path
@@ -18,19 +17,20 @@ close_prices = data['Close']
 model = ARIMA(close_prices, order=(3, 1, 0))  # ARIMA(p, d, q) parameters
 model_fit = model.fit()
 
-# Make predictions
-forecast = model_fit.forecast(steps=1)
-#predicted_price = forecast[0]
-predicted_price = forecast.iloc[0]
+# Make predictions for the next week (7 days)
+forecast = model_fit.forecast(steps=7)
+predicted_prices = forecast.values  # Get the predicted prices
 last_price = close_prices.iloc[-1]
 
-# Determine if the market is bullish or bearish
-if predicted_price > last_price:
-    market_trend = 'Bullish'
-else:
-    market_trend = 'Bearish'
+# Determine market trend for each day in the forecast
+trends = []
+for predicted_price in predicted_prices:
+    if predicted_price > last_price:
+        trends.append('Bullish')
+    else:
+        trends.append('Bearish')
 
-# Print the results
+# Print results
 print(f"Last Closing Price: {last_price:.2f}")
-print(f"Predicted Price: {predicted_price:.2f}")
-print(f"Market Trend: {market_trend}")
+for day, predicted_price, trend in zip(range(1, 8), predicted_prices, trends):
+    print(f"Predicted Price for Day {day}: {predicted_price:.2f}, Candle is {trend}")

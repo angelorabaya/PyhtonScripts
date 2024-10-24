@@ -12,7 +12,7 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense, Input
 
 # Load the data
-data = pd.read_csv('d:/BTCUSD.csv')
+data = pd.read_csv('DJT.csv')
 data['Date'] = pd.to_datetime(data['Date'])
 data.set_index('Date', inplace=True)
 

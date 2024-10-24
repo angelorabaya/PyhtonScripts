@@ -3,7 +3,7 @@ import pandas as pd
 
 # Constants
 API_KEY = 'Z796Q911XLQXDL3P'  # replace with your Alpha Vantage API key
-SYMBOL = 'SOLUSDT'  # replace with your desired stock symbol
+SYMBOL = 'DJT'  # replace with your desired stock symbol
 TIME_FRAME = 'daily'  # available options: daily, weekly, monthly
 OUTPUT_SIZE = 'full'  # 'compact' or 'full'
 

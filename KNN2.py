@@ -4,7 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 
 # Load data
-df = pd.read_csv("SOLUSDT.csv")
+df = pd.read_csv("DJT.csv")
 
 # Preprocess data
 df['Date'] = pd.to_datetime(df['Date'])
@@ -30,7 +30,8 @@ predictions = knn.predict(X_test)
 last_row = df.iloc[0]
 
 # Output the closest trade
-predicted_trade = knn.predict(last_row[['Open', 'High', 'Low', 'Close', 'Volume']].values.reshape(1, -1))[0]
+#predicted_trade = knn.predict(last_row[['Open', 'High', 'Low', 'Close', 'Volume']].values.reshape(1, -1))[0]
+predicted_trade = knn.predict(last_row[['Open', 'High', 'Low', 'Close', 'Volume']].to_frame().T)[0]
 
 # Display trade information
 signal = "Bullish" if predicted_trade == 1 else "Bearish"
