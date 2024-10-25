@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from pmdarima import auto_arima
 
 # Load the data
-data = pd.read_csv('SOLUSDT.csv', parse_dates=['Date'], index_col='Date')
+data = pd.read_csv('DOGEUSDT.csv', parse_dates=['Date'], index_col='Date')
 
 # Ensure the 'Close' column is in numeric format
 data['Close'] = pd.to_numeric(data['Close'], errors='coerce')
