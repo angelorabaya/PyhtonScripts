@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
 # Load the data from CSV
-data = pd.read_csv('DJT.csv')
+data = pd.read_csv('BTCUSDT.csv')
 
 # Convert the 'Date' column to datetime format
 data['Date'] = pd.to_datetime(data['Date'])

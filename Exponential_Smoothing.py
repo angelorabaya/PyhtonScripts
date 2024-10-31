@@ -1,42 +1,24 @@
 import pandas as pd
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
-# Load historical data from CSV
-def load_data(file_path):
-    # Load the CSV file and set the Date column as the index
-    data = pd.read_csv(file_path, parse_dates=['Date'], index_col='Date')
+# Load the CSV data
+file_path = 'BTCUSDT.csv'  # Update this line with your file path
+data = pd.read_csv(file_path, parse_dates=['Date']).sort_values('Date', ascending=False)
 
-    # Sort the DataFrame by the index (Date) in descending order
-    data = data.sort_index(ascending=True)
+# Check for missing values and handle them (e.g., forward fill)
+data['Close'] = data['Close'].ffill()  # Updated line to use ffill() method
 
-    # Return the sorted DataFrame
-    return data
+# Fit the Exponential Smoothing model using 'Close' price
+try:
+    model = ExponentialSmoothing(data['Close'], trend='add', seasonal=None).fit()
 
-# Forecast future prices using ETS
-def forecast_prices(data, steps=7):
-    model = ExponentialSmoothing(data['Close'], trend='add', seasonal='add', seasonal_periods=12)
-    model_fit = model.fit()
-    forecast = model_fit.forecast(steps)
-    return forecast
+    # Forecast future prices
+    forecast_periods = 10
+    forecast = model.forecast(steps=forecast_periods)
 
-# Main function to run the script
-def main():
-    file_path = 'DJT.csv'  # Replace with your CSV file path
-    historical_data = load_data(file_path)
+    # Output the forecasted prices
+    print(f"Forecasted Future Prices for the next {forecast_periods} periods:")
+    print('\n'.join([f"Period {i + 1}: {price:.2f}" for i, price in enumerate(forecast)]))
 
-    # Ensure there are enough data points
-    if len(historical_data) < 12:
-        print("Not enough data points for forecasting. Requires at least 12.")
-        return
-
-    # Generate future prices
-    future_prices = forecast_prices(historical_data)
-
-    # Print future prices
-    print("Future prices for the next 7 days:")
-    for i, price in enumerate(future_prices, start=1):
-        print(f"Day {i}: {price:.2f}")
-
-
-if __name__ == "__main__":
-    main()
+except Exception as e:
+    print(f"An error occurred: {e}")

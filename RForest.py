@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import numpy as np
 
 # Load the data
-data = pd.read_csv('GRAB.csv', parse_dates=['Date'])
+data = pd.read_csv('BTC_USDT.csv', parse_dates=['Date'])
 data['Date'] = pd.to_datetime(data['Date'])
 data.set_index('Date', inplace=True)
 

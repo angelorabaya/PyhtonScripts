@@ -47,7 +47,7 @@ def make_predictions(model, X_test):
 # Main function
 def main():
     # Load data
-    df = load_data('DJT.csv')
+    df = load_data('BTCUSDT.csv')
 
     # Prepare feature set and target variable
     X, y = prepare_data(df)
