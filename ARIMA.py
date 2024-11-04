@@ -1,35 +1,41 @@
 import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
+from AutoARIMA import get_Arima_Values
 
-# Load data
-file_path = 'BNBUSDT.csv'  # Replace with your CSV file path
-data = pd.read_csv(file_path)
+def get_ARIMA(currency):
+    # Load data
+    file_path = currency
+    data = pd.read_csv(file_path)
 
-# Parse dates and set index with frequency
-data['Date'] = pd.to_datetime(data['Date'])
-data.set_index('Date', inplace=True)
-data = data.asfreq('D')  # Set frequency to daily
+    # Parse dates and set index with frequency
+    data['Date'] = pd.to_datetime(data['Date'])
+    data.set_index('Date', inplace=True)
+    data = data.asfreq('D')  # Set frequency to daily
 
-# Use the 'Close' prices for ARIMA
-close_prices = data['Close']
+    # Use the 'Close' prices for ARIMA
+    close_prices = data['Close']
 
-# Fit the ARIMA model (adjust order parameters if necessary)
-model = ARIMA(close_prices, order=(5, 1, 4), enforce_stationarity=False)  # ARIMA(p, d, q) parameters
-model_fit = model.fit()
+    p,d,q = get_Arima_Values(file_path)
 
-# Make predictions
-forecast = model_fit.forecast(steps=1)
-#predicted_price = forecast[0]
-predicted_price = forecast.iloc[0]
-last_price = close_prices.iloc[-1]
+    # Fit the ARIMA model (adjust order parameters if necessary)
+    model = ARIMA(close_prices, order=(p, d, q), enforce_stationarity=False)  # ARIMA(p, d, q) parameters
+    model_fit = model.fit()
 
-# Determine if the market is bullish or bearish
-if predicted_price > last_price:
-    market_trend = 'Bullish'
-else:
-    market_trend = 'Bearish'
+    # Make predictions
+    forecast = model_fit.forecast(steps=1)
+    #predicted_price = forecast[0]
+    predicted_price = forecast.iloc[0]
+    last_price = close_prices.iloc[-1]
 
-# Print the results
-print(f"Last Closing Price: {last_price:.2f}")
-print(f"Predicted Price: {predicted_price:.2f}")
-print(f"Market Trend: {market_trend}")
+    # Determine if the market is bullish or bearish
+    if predicted_price > last_price:
+        market_trend = 'Bullish'
+    else:
+        market_trend = 'Bearish'
+
+    # Print the results
+    #print(f"Last Closing Price: {last_price:.2f}")
+    #print(f"Predicted Price: {predicted_price:.2f}")
+    #print(f"Market Trend: {market_trend}")
+
+    return [market_trend,p,d,q]
