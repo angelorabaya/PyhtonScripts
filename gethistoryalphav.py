@@ -2,10 +2,36 @@ import requests
 import pandas as pd
 
 # Constants
-API_KEY = 'Z796Q911XLQXDL3P'  # replace with your Alpha Vantage API key
-SYMBOL = 'ADAUSDT'  # replace with your desired stock symbol
+API_KEY = '2YKB3WHR8DQW5JAN'  # replace with your Alpha Vantage API key 6XJOAVQKQGMDSWC8 Z796Q911XLQXDL3P N13H2YJPT5KATOL2
+SYMBOL = 'NEARUSDT'  # replace with your desired stock symbol
 TIME_FRAME = 'daily'  # available options: daily, weekly, monthly
 OUTPUT_SIZE = 'full'  # 'compact' or 'full'
+
+crypto_list_all = [
+    "BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT", "XRPUSDT",
+    "ADAUSDT", "DOGEUSDT", "DOTUSDT", "LINKUSDT", "MATICUSDT",
+    "AVAXUSDT", "UNIUSDT", "ARBUSDT", "AAVEUSDT", "MKRUSDT",
+    "COMPUSDT", "NEARUSDT", "ATOMUSDT", "ALGOUSDT", "XTZUSDT",
+    "EOSUSDT", "OPUSDT", "LRCUSDT", "IMXUSDT", "ERAUSDT",
+    "AXSUSDT", "MANAUSDT", "SANDUSDT", "GALAUSDT", "IMXUSDT",
+    "GRTUSDT", "BATUSDT", "FILUSDT", "ICPUSDT", "HBARUSDT",
+    "QNTUSDT", "VETUSDT", "XMRUSDT", "ZECUSDT", "SCRTUSDT",
+    "FTTUSDT", "CROUSDT", "OKBUSDT", "KCSUSDT", "SHIBUSDT",
+    "PEPEUSDT", "FLOKIUSDT", "ATOMUSDT", "KSMUSDT", "ONEUSDT",
+    "RUNEUSDT", "WBTCUSDT", "RENBTCUSDT", "FETUSDT", "AGIXUSDT",
+    "OCEANUSDT"
+]
+
+crypto_list = [
+    "ERAUSDT",
+    "AXSUSDT", "MANAUSDT", "SANDUSDT", "GALAUSDT", "IMXUSDT",
+    "GRTUSDT", "BATUSDT", "FILUSDT", "ICPUSDT", "HBARUSDT",
+    "QNTUSDT", "VETUSDT", "XMRUSDT", "ZECUSDT", "SCRTUSDT",
+    "FTTUSDT", "CROUSDT", "OKBUSDT", "KCSUSDT", "SHIBUSDT",
+    "PEPEUSDT", "FLOKIUSDT", "ATOMUSDT", "KSMUSDT", "ONEUSDT",
+    "RUNEUSDT", "WBTCUSDT", "RENBTCUSDT", "FETUSDT", "AGIXUSDT",
+    "OCEANUSDT"
+]
 
 # Functions
 def fetch_historical_data(symbol, api_key, time_frame, output_size):
@@ -42,8 +68,14 @@ def save_to_csv(df, filename):
 # Main execution
 if __name__ == '__main__':
     try:
-        historical_data = fetch_historical_data(SYMBOL, API_KEY, TIME_FRAME, OUTPUT_SIZE)
-        df = convert_to_dataframe(historical_data, TIME_FRAME)
-        save_to_csv(df, f'{SYMBOL}.csv')
+        #historical_data = fetch_historical_data(SYMBOL, API_KEY, TIME_FRAME, OUTPUT_SIZE)
+        #df = convert_to_dataframe(historical_data, TIME_FRAME)
+        #save_to_csv(df, f'{SYMBOL}.csv')
+
+        for crypto in crypto_list:
+            historical_data = fetch_historical_data(crypto, API_KEY, TIME_FRAME, OUTPUT_SIZE)
+            df = convert_to_dataframe(historical_data, TIME_FRAME)
+            save_to_csv(df, f'D:/PYTHON_PROJECTS/pythonProject/CSV/{crypto}.csv')
+
     except Exception as e:
         print(str(e))

@@ -4,7 +4,7 @@ from sklearn.svm import SVR
 from sklearn.preprocessing import StandardScaler
 
 # Load the dataset
-data = pd.read_csv('BTCUSDT.csv')
+data = pd.read_csv('DOGEUSDT.csv')
 
 # Preprocess data
 data['Date'] = pd.to_datetime(data['Date'])  # Convert date column to datetime

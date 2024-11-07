@@ -10,7 +10,7 @@ from keras.layers import LSTM, Dense, Dropout
 from keras.layers import Input
 
 # Load the data
-data = pd.read_csv('BTCUSDT.csv', parse_dates=['Date'], index_col='Date')
+data = pd.read_csv('DOGEUSDT.csv', parse_dates=['Date'], index_col='Date')
 data = data[['Close']]  # Use closing prices for forecasting
 
 # Normalize the data

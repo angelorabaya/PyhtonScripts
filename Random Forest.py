@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error
 from datetime import timedelta
 
 # Load the data
-data = pd.read_csv('BTCUSDT.csv')
+data = pd.read_csv('DOGEUSDT.csv')
 
 # Convert 'Date' column to datetime
 data['Date'] = pd.to_datetime(data['Date'])
