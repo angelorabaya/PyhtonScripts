@@ -40,10 +40,10 @@ def get_crypto_data(symbol, comparison_symbol, limit, exchange=''):
     return df
 
 # Example usage
-symbol = 'ADA'  # Cryptocurrency (e.g., BTC, ETH)
+symbol = 'BTC'  # Cryptocurrency (e.g., BTC, ETH)
 comparison = 'USDT'  # Base currency (e.g., USD, EUR)
 days = 2000  # Number of days of historical data
-exchange = 'Kraken'  # Exchange (CCCAGG is the default aggregated data) Binance,Coinbase,Kraken,Bitfinex,Huobi,Bittrex,Gemini,OKEx,KuCoin,Bitstamp
+exchange = 'OKEx'  # Exchange (CCCAGG is the default aggregated data) Binance,Coinbase,Kraken,Bitfinex,Huobi,Bittrex,Gemini,OKEx,KuCoin,Bitstamp
 
 df = get_crypto_data(symbol, comparison, days, exchange)
 

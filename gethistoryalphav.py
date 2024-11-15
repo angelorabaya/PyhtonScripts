@@ -12,7 +12,7 @@ crypto_list_all = [
     "ADAUSDT", "DOGEUSDT", "DOTUSDT", "LINKUSDT", "MATICUSDT",
     "AVAXUSDT", "UNIUSDT", "ARBUSDT", "AAVEUSDT", "MKRUSDT",
     "COMPUSDT", "NEARUSDT", "ATOMUSDT", "ALGOUSDT", "XTZUSDT",
-    "EOSUSDT", "OPUSDT", "LRCUSDT", "IMXUSDT", "ERAUSDT",
+    "OPUSDT", "LRCUSDT", "IMXUSDT", "ERAUSDT",
     "AXSUSDT", "MANAUSDT", "SANDUSDT", "GALAUSDT", "IMXUSDT",
     "GRTUSDT", "BATUSDT", "FILUSDT", "ICPUSDT", "HBARUSDT",
     "QNTUSDT", "VETUSDT", "XMRUSDT", "ZECUSDT", "SCRTUSDT",
@@ -22,16 +22,7 @@ crypto_list_all = [
     "OCEANUSDT"
 ]
 
-crypto_list = [
-    "ERAUSDT",
-    "AXSUSDT", "MANAUSDT", "SANDUSDT", "GALAUSDT", "IMXUSDT",
-    "GRTUSDT", "BATUSDT", "FILUSDT", "ICPUSDT", "HBARUSDT",
-    "QNTUSDT", "VETUSDT", "XMRUSDT", "ZECUSDT", "SCRTUSDT",
-    "FTTUSDT", "CROUSDT", "OKBUSDT", "KCSUSDT", "SHIBUSDT",
-    "PEPEUSDT", "FLOKIUSDT", "ATOMUSDT", "KSMUSDT", "ONEUSDT",
-    "RUNEUSDT", "WBTCUSDT", "RENBTCUSDT", "FETUSDT", "AGIXUSDT",
-    "OCEANUSDT"
-]
+crypto_list = ["BTCUSDT"]
 
 # Functions
 def fetch_historical_data(symbol, api_key, time_frame, output_size):
@@ -75,7 +66,7 @@ if __name__ == '__main__':
         for crypto in crypto_list:
             historical_data = fetch_historical_data(crypto, API_KEY, TIME_FRAME, OUTPUT_SIZE)
             df = convert_to_dataframe(historical_data, TIME_FRAME)
-            save_to_csv(df, f'D:/PYTHON_PROJECTS/pythonProject/CSV/{crypto}.csv')
+            save_to_csv(df, f'{crypto}.csv')
 
     except Exception as e:
         print(str(e))

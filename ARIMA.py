@@ -26,6 +26,7 @@ def get_ARIMA(currency):
     #predicted_price = forecast[0]
     predicted_price = forecast.iloc[0]
     last_price = close_prices.iloc[-1]
+    #print(f"future {predicted_price} last {last_price}")
 
     # Determine if the market is bullish or bearish
     if predicted_price > last_price:
