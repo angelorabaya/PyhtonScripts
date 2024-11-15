@@ -1,5 +1,5 @@
 #from ARIMA import get_ARIMA
-from PMD_Arima import get_PDARIMA
+#from PMD_Arima import get_PDARIMA
 from RNNetwork import get_RNN
 from Ensemble2 import CryptoPredictor
 from Prophet import get_Prophet
@@ -13,7 +13,7 @@ from Calculate_StopLoss import calculate_stop_loss_rrr
 CURRENCY = "BTCUSDT.csv"
 
 #get_arima_trend = get_ARIMA(CURRENCY)
-get_arima_trend = get_PDARIMA(CURRENCY)
+#get_arima_trend = get_PDARIMA(CURRENCY)
 get_rnn_trend = get_RNN(CURRENCY)
 
 ensemble = CryptoPredictor(CURRENCY)
@@ -33,7 +33,7 @@ prophet = get_Prophet(CURRENCY)
 
 print()
 print(f"CURRENCY: {CURRENCY}")
-print(f"ARIMA: {get_arima_trend[0]}")
+#print(f"ARIMA: {get_arima_trend[0]}")
 #print(f"SARIMA: {get_sarima_trend}")
 print(f"RNN: {get_rnn_trend}")
 print(f"ENSEMBLE: {get_ensemble_trend}")

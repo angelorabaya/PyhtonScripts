@@ -41,8 +41,8 @@ def fetch_binance_historical_data(symbol, timeframe='1h', start_date=None, end_d
         ohlcv = exchange.fetch_ohlcv(symbol, timeframe, since=start_timestamp, limit=1000)
 
         # Convert to DataFrame
-        df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-        df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+        df = pd.DataFrame(ohlcv, columns=['Date', 'Open', 'High', 'Low', 'Close', 'Volume'])
+        df['Date'] = pd.to_datetime(df['Date'], unit='ms')
 
         return df
 
@@ -70,7 +70,7 @@ def save_to_csv(df, filename=None):
 def main():
     # Configuration
     symbols = ['BTC/USDT']
-    timeframes = ['4h']
+    timeframes = ['1d']
 
     # Date range (optional)
     start_date = datetime.now() - timedelta(days=999)
