@@ -142,17 +142,6 @@ def main(file_path):
     print("Future price predictions:")
     print(predictions_df)
 
-    # Plot results
-    #plt.figure(figsize=(12, 6))
-    #plt.plot(df['Date'][-100:], df['Close'][-100:], label='Historical Close Price')
-    #plt.plot(predictions_df['Date'], predictions_df['Predicted_Close'], label='Predicted Close Price')
-    #plt.title('Cryptocurrency Price Prediction')
-    #plt.xlabel('Date')
-    #plt.ylabel('Price')
-    #plt.legend()
-    #plt.show()
-
-
 if __name__ == "__main__":
-    file_path = "BTCUSDT.csv"  # Replace with your CSV file path
+    file_path = "BNBUSDT.csv"  # Replace with your CSV file path
     main(file_path)

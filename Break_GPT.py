@@ -147,5 +147,5 @@ def main(file_path):
 
 
 if __name__ == "__main__":
-    file_path = "BTCUSDT.csv"  # Replace with your CSV file path
+    file_path = "ETHUSDT.csv"  # Replace with your CSV file path
     main(file_path)

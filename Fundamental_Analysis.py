@@ -229,7 +229,7 @@ class CryptoAnalyzer:
 
 # Example usage
 if __name__ == "__main__":
-    analyzer = CryptoAnalyzer('BNB')
+    analyzer = CryptoAnalyzer('ETH')
     analysis = analyzer.get_analysis()
     print("\nDetailed Cryptocurrency Analysis:")
     print(json.dumps(analysis, indent=2))

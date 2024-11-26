@@ -10,7 +10,7 @@ from Prophet import get_Prophet
 #from Gradient_Boosting_Machines import get_GBM
 from Calculate_StopLoss import calculate_stop_loss_rrr
 
-CURRENCY = "BTCUSDT.csv"
+CURRENCY = "ADAUSDT.csv"
 
 #get_arima_trend = get_ARIMA(CURRENCY)
 #get_arima_trend = get_PDARIMA(CURRENCY)

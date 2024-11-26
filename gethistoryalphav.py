@@ -22,7 +22,7 @@ crypto_list_all = [
     "OCEANUSDT"
 ]
 
-crypto_list = ["BNBUSDT"]
+crypto_list = ["BTCUSDT"]
 
 # Functions
 def fetch_historical_data(symbol, api_key, time_frame, output_size):
