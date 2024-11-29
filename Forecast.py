@@ -1,3 +1,6 @@
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 #from ARIMA import get_ARIMA
 #from PMD_Arima import get_PDARIMA
 from RNNetwork import get_RNN
@@ -10,7 +13,7 @@ from Prophet import get_Prophet
 #from Gradient_Boosting_Machines import get_GBM
 from Calculate_StopLoss import calculate_stop_loss_rrr
 
-CURRENCY = "ADAUSDT.csv"
+CURRENCY = "BTCUSDT.csv"
 
 #get_arima_trend = get_ARIMA(CURRENCY)
 #get_arima_trend = get_PDARIMA(CURRENCY)
@@ -20,9 +23,9 @@ ensemble = CryptoPredictor(CURRENCY)
 ensemble.prepare_data()
 ensemble.train_model()
 ensemble = ensemble.predict_trend()
-
 get_ensemble_trend = ensemble['trend']
 get_ensemble_price = ensemble['predicted_price']
+
 #get_sarima_trend = get_SARIMA(CURRENCY,get_arima_trend[1],get_arima_trend[2],get_arima_trend[3])
 #get_exponential_smoothing = get_EXSMOOTH(CURRENCY)
 #get_support_vector_regression = get_SVR(CURRENCY)

@@ -49,8 +49,9 @@ class CryptoPredictor:
 
     def predict_trend(self, forecast_days=7):
         features = ['MA7', 'MA21', 'EMA12', 'EMA26', 'MACD', 'RSI', 'Volatility', 'High', 'Low', 'Close', 'Volume']
-        last_data = self.df[features].iloc[-forecast_days:].values
-        last_data_scaled = self.scaler.transform(last_data)
+        last_data = self.df[features].iloc[-forecast_days:]  # Keep as DataFrame
+        last_data_scaled = self.scaler.transform(last_data)  # Scale the data
+
         future_prices = self.rf_model.predict(last_data_scaled)
 
         current_price = self.df['Close'].iloc[-1]  # Now this will be the most recent price

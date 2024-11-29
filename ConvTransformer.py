@@ -1,3 +1,6 @@
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import pandas as pd
 import numpy as np
 import tensorflow as tf
@@ -143,5 +146,5 @@ def main(file_path):
     print(predictions_df)
 
 if __name__ == "__main__":
-    file_path = "BNBUSDT.csv"  # Replace with your CSV file path
+    file_path = "BTCUSDT.csv"  # Replace with your CSV file path
     main(file_path)

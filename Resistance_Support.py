@@ -175,7 +175,7 @@ class PriceLevelAnalyzer:
 
 # Example usage
 if __name__ == "__main__":
-    file_path = "BNBUSDT.csv"  # Replace with your CSV file path
+    file_path = "MAVUSDT.csv"  # Replace with your CSV file path
 
     # Initialize analyzer
     analyzer = PriceLevelAnalyzer(

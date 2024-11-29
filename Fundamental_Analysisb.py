@@ -10,7 +10,7 @@ class CryptoFundamentalAnalysis:
     def __init__(self, crypto_id):
         self.crypto_id = crypto_id
         self.coingecko_api = "https://api.coingecko.com/api/v3"
-        self.etherscan_api = "CG-WNFRmP6DvNopNMqZmmwEGJAN"  # Replace with your API key
+        self.etherscan_api = "CG-WNFRmP6DvNopNMqZmmwEGJAN"  # Replace with your API key or CG-WNFRmP6DvNopNMqZmmwEGJAN / 2WHUJR2DEXIGZYC7N8BM6XPPSCFTF34HHH
 
     def get_market_data(self):
         try:
@@ -30,7 +30,8 @@ class CryptoFundamentalAnalysis:
                 }
             }
 
-            return pd.DataFrame.from_dict(market_data, orient='index')
+            #return pd.DataFrame.from_dict(market_data, orient='index')
+            return market_data
 
         except Exception as e:
             return f"Error fetching market data: {str(e)}"
@@ -58,7 +59,8 @@ class CryptoFundamentalAnalysis:
                 }
             }
 
-            return pd.DataFrame.from_dict(metrics, orient='index')
+            #return pd.DataFrame.from_dict(metrics, orient='index')
+            return metrics
 
         except Exception as e:
             return f"Error fetching on-chain metrics: {str(e)}"
@@ -82,31 +84,73 @@ class CryptoFundamentalAnalysis:
                 }
             }
 
-            return pd.DataFrame.from_dict(metrics, orient='index')
+            #return pd.DataFrame.from_dict(metrics, orient='index')
+            return metrics
 
         except Exception as e:
             return f"Error calculating network value metrics: {str(e)}"
 
     def get_development_activity(self):
         try:
-            endpoint = f"{self.coingecko_api}/coins/{self.crypto_id}/developer_data"
-            response = requests.get(endpoint)
-            data = response.json()
+            # GitHub API endpoints
+            headers = {
+                'Authorization': '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',  # Create personal access token on GitHub
+                'Accept': 'application/vnd.github.v3+json'
+            }
+
+            # Repository mappings
+            repo_mappings = {
+                'bitcoin': 'bitcoin/bitcoin',
+                'ethereum': 'ethereum/go-ethereum'
+            }
+
+            if self.crypto_id not in repo_mappings:
+                return pd.DataFrame({
+                    'GitHub Stars': [0],
+                    'GitHub Forks': [0],
+                    'GitHub Issues': [0],
+                    'GitHub Subscribers': [0],
+                    'GitHub Contributors': [0]
+                })
+
+            repo = repo_mappings[self.crypto_id]
+            base_url = f"https://api.github.com/repos/{repo}"
+
+            # Get repository stats
+            repo_response = requests.get(base_url, headers=headers)
+            repo_data = repo_response.json()
+
+            # Get contributors count
+            contributors_response = requests.get(f"{base_url}/contributors?per_page=1&anon=true", headers=headers)
+            contributors_count = len(
+                requests.get(f"{base_url}/contributors?per_page=100&anon=true", headers=headers).json())
+
+            # Get open issues count
+            issues_response = requests.get(f"{base_url}/issues?state=open", headers=headers)
+            issues_data = issues_response.json()
 
             dev_metrics = {
                 'Development Metrics': {
-                    'GitHub Stars': data.get('stars', 0),
-                    'GitHub Forks': data.get('forks', 0),
-                    'GitHub Issues': data.get('total_issues', 0),
-                    'GitHub Subscribers': data.get('subscribers', 0),
-                    'GitHub Contributors': data.get('contributors', 0)
+                    'GitHub Stars': repo_data.get('stargazers_count', 0),
+                    'GitHub Forks': repo_data.get('forks_count', 0),
+                    'GitHub Issues': repo_data.get('open_issues_count', 0),
+                    'GitHub Subscribers': repo_data.get('subscribers_count', 0),
+                    'GitHub Contributors': contributors_count
                 }
             }
 
-            return pd.DataFrame.from_dict(dev_metrics, orient='index')
+            #return pd.DataFrame.from_dict(dev_metrics, orient='index')
+            return dev_metrics
 
         except Exception as e:
-            return f"Error fetching development metrics: {str(e)}"
+            print(f"Error fetching development metrics: {str(e)}")
+            return pd.DataFrame({
+                'GitHub Stars': [0],
+                'GitHub Forks': [0],
+                'GitHub Issues': [0],
+                'GitHub Subscribers': [0],
+                'GitHub Contributors': [0]
+            })
 
     def analyze_fundamentals(self):
         try:
@@ -139,7 +183,8 @@ class CryptoFundamentalAnalysis:
                 }
             }
 
-            return pd.DataFrame.from_dict(analysis, orient='index')
+            #return pd.DataFrame.from_dict(analysis, orient='index')
+            return analysis
 
         except Exception as e:
             return f"Error in fundamental analysis: {str(e)}"
@@ -147,24 +192,37 @@ class CryptoFundamentalAnalysis:
 
 def main():
     # Example usage
-    crypto_id = "mav" #input("Enter cryptocurrency ID (e.g., bitcoin, ethereum): ")
+    crypto_id = "bitcoin"
     cfa = CryptoFundamentalAnalysis(crypto_id)
 
-    print("\nMarket Data:")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    def format_section(title, content):
+        separator = "=" * 50
+        return f"\n{separator}\n{title}\n{separator}\n{content}\n"
+
+    # Collect all data
+    #sections = {
+    #    "CRYPTOCURRENCY ANALYSIS": f"Asset: {crypto_id.upper()}\nAnalysis Time: {timestamp}",
+    #    "MARKET DATA": cfa.get_market_data(),
+    #    "ON-CHAIN METRICS": cfa.get_on_chain_metrics(),
+    #    "NETWORK VALUE METRICS": cfa.calculate_network_value_metrics(),
+    #    "DEVELOPMENT ACTIVITY": cfa.get_development_activity(),
+    #    "FUNDAMENTAL ANALYSIS": cfa.analyze_fundamentals()
+    #}
+
+    # Create output
+    #output = []
+    #for title, content in sections.items():
+    #    section = format_section(title, content)
+    #    output.append(section)
+    #    print(section)
+    print("CRYPTOCURRENCY ANALYSIS")
+    print(f"Asset: {crypto_id.upper()}")
     print(cfa.get_market_data())
-
-    print("\nOn-Chain Metrics:")
     print(cfa.get_on_chain_metrics())
-
-    print("\nNetwork Value Metrics:")
     print(cfa.calculate_network_value_metrics())
-
-    print("\nDevelopment Activity:")
     print(cfa.get_development_activity())
-
-    print("\nFundamental Analysis:")
-    print(cfa.analyze_fundamentals())
-
 
 if __name__ == "__main__":
     main()

@@ -1,10 +1,11 @@
-#import os
-#os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import TimeSeriesSplit
+from tensorflow.keras import Input
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout, Bidirectional, BatchNormalization
 from tensorflow.keras.optimizers import Adam
@@ -36,7 +37,8 @@ def prepare_data(data, look_back=60, future_steps=30):
 # Build the enhanced BreakGPT-inspired model
 def build_model(input_shape, output_steps):
     model = Sequential([
-        Bidirectional(LSTM(128, return_sequences=True, input_shape=input_shape)),
+        Input(shape=input_shape),  # Explicit input layer
+        Bidirectional(LSTM(128, return_sequences=True)),
         BatchNormalization(),
         Dropout(0.3),
         Bidirectional(LSTM(128, return_sequences=True)),
@@ -147,5 +149,5 @@ def main(file_path):
 
 
 if __name__ == "__main__":
-    file_path = "ETHUSDT.csv"  # Replace with your CSV file path
+    file_path = "MAVUSDT.csv"  # Replace with your CSV file path
     main(file_path)
