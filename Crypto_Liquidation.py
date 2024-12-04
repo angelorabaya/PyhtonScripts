@@ -26,10 +26,10 @@ class CryptoLiquidationTracker:
             print(f"Error fetching Binance liquidations: {e}")
             return None
 
-    def get_bybit_liquidations(self):
+    def get_bybit_liquidations(self, symbol="BTCUSDT"):
         try:
             params = {
-                "symbol": "BTCUSD",
+                "symbol": symbol,
                 "limit": 50
             }
 
@@ -42,7 +42,7 @@ class CryptoLiquidationTracker:
             print(f"Error fetching Bybit liquidations: {e}")
             return None
 
-    def get_aggregated_liquidation_data(self):
+    def get_aggregated_liquidation_data(self, currency):
         liquidation_data = {
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'binance': {
@@ -56,7 +56,7 @@ class CryptoLiquidationTracker:
         }
 
         # Get Binance data
-        binance_data = self.get_binance_liquidations()
+        binance_data = self.get_binance_liquidations(symbol=currency)
         if binance_data:
             try:
                 latest_data = binance_data[-1]
@@ -66,7 +66,7 @@ class CryptoLiquidationTracker:
                 print(f"Error processing Binance data: {e}")
 
         # Get Bybit data
-        bybit_data = self.get_bybit_liquidations()
+        bybit_data = self.get_bybit_liquidations(symbol=currency)
         if bybit_data:
             liquidation_data['bybit']['liquidations'] = bybit_data
             liquidation_data['total_liquidations'] += len(bybit_data)

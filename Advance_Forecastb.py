@@ -189,7 +189,7 @@ def main():
         set_seeds(42)
         configure_gpu()
 
-        csv_file = "BTCUSDT.csv"  # Replace with your CSV file path
+        csv_file = "BTCUSDWB.csv"  # Replace with your CSV file path
         df = load_and_prepare_data(csv_file)
 
         if df is None or len(df) < 60:

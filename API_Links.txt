@@ -1,0 +1,52 @@
+coinmarketcap
+    username: dotas47801@jonespal.com
+
+
+Examples of CoinGecko Crypto IDs
+Top Cryptos by Market Cap:
+Binance Coin (BNB): binancecoin
+Tether (USDT): tether
+USD Coin (USDC): usd-coin
+Ripple (XRP): ripple
+Cardano (ADA): cardano
+Dogecoin (DOGE): dogecoin
+Solana (SOL): solana
+Polygon (MATIC): matic-network
+Polkadot (DOT): polkadot
+Litecoin (LTC): litecoin
+Stablecoins:
+Dai (DAI): dai
+TrueUSD (TUSD): true-usd
+Pax Dollar (USDP): paxos-standard
+Gemini Dollar (GUSD): gemini-dollar
+Layer 2 and Scaling Solutions:
+Arbitrum (ARB): arbitrum
+Optimism (OP): optimism
+Loopring (LRC): loopring
+DeFi Tokens:
+Uniswap (UNI): uniswap
+Aave (AAVE): aave
+Curve DAO (CRV): curve-dao-token
+SushiSwap (SUSHI): sushi
+Maker (MKR): maker
+Metaverse and NFT-related Tokens:
+Decentraland (MANA): decentraland
+The Sandbox (SAND): the-sandbox
+Axie Infinity (AXS): axie-infinity
+Enjin Coin (ENJ): enjincoin
+Immutable X (IMX): immutable-x
+Privacy Coins:
+Monero (XMR): monero
+Zcash (ZEC): zcash
+Dash (DASH): dash
+Other Popular Cryptocurrencies:
+Chainlink (LINK): chainlink
+Shiba Inu (SHIB): shiba-inu
+Avalanche (AVAX): avalanche-2
+Cosmos (ATOM): cosmos
+Filecoin (FIL): filecoin
+Tezos (XTZ): tezos
+Algorand (ALGO): algorand
+VeChain (VET): vechain
+Hedera (HBAR): hedera-hashgraph
+Internet Computer (ICP): internet-computer
