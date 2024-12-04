@@ -1,6 +1,8 @@
 import requests
+from Crypto_DevActivity import get_development_activity
 
-CRYPTO_SYMBOL = "LTC"
+CRYPTO_SYMBOL = "SOL"
+CRYPTO_ID = "solana"
 
 def get_crypto_data():
   try:
@@ -48,7 +50,8 @@ def get_crypto_data():
     return {
         'Market Metrics': market_data,
         'Supply Metrics': supply_data,
-        'Network Value Metrics': network_data
+        'Network Value Metrics': network_data,
+        'Development Metrics': get_development_activity(CRYPTO_ID)
     }
 
   except requests.exceptions.RequestException as e:
