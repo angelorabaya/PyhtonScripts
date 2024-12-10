@@ -62,5 +62,5 @@ if __name__ == "__main__":
   polkadot_data = get_crypto_data()
   if polkadot_data:
     print("CRYPTOCURRENCY ANALYSIS")
-    print(f"Asset: {CRYPTO_SYMBOL}USD")
+    print(f"Asset: {CRYPTO_SYMBOL}USD ({CRYPTO_ID})")
     print(polkadot_data)

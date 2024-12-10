@@ -128,7 +128,8 @@ class CryptoFundamentalAnalysis:
                 'immutable-x': 'ImmutableX/imx-core-sdk',
                 'loopring': 'Loopring/loopring',
                 'sushiswap': 'sushiswap/sushiswap',
-                'curve-dao-token': 'curvefi/curve-dao-contracts'
+                'curve-dao-token': 'curvefi/curve-dao-contracts',
+                'tron': 'tronprotocol/java-tron'
             }
 
             if self.crypto_id not in repo_mappings:
@@ -219,7 +220,7 @@ class CryptoFundamentalAnalysis:
 
 def main():
     # Example usage
-    crypto_id = "litecoin"
+    crypto_id = "ethereum"
     cfa = CryptoFundamentalAnalysis(crypto_id)
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
