@@ -25,7 +25,6 @@ def get_crypto_data(symbol, timeframe, limit):
         print(f"Error fetching data: {e}")
         return None
 
-
 def calculate_indicators(df):
     results = {}
 
@@ -68,7 +67,6 @@ def calculate_indicators(df):
     results['S2'] = results['PP'] - (df['High'] - df['Low'])
 
     return results
-
 
 def analyze_signals(indicators, current_price):
     signals = {
@@ -120,7 +118,6 @@ def analyze_signals(indicators, current_price):
 
     return signals
 
-
 def format_output(analysis_results):
     formatted_output = {}
 
@@ -160,7 +157,6 @@ def format_output(analysis_results):
 
     return formatted_output
 
-
 def main():
     symbol = 'ETH/USDT'
     timeframes = {
@@ -187,7 +183,6 @@ def main():
 
     formatted_results = format_output(analysis_results)
     return formatted_results
-
 
 if __name__ == "__main__":
     results = main()
